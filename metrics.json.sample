@@ -1,0 +1,34 @@
+{
+    "metrics": [
+        {
+        "Namespace": "AWS/ELB",
+        "MetricName": "RequestCount",
+        "Statistics.member.1": "Sum",
+        "Unit": "Count",
+        "Dimensions.member.1.Name":"LoadBalancerName",
+        "Dimensions.member.1.Value":"RADImp"
+        },
+        {
+        "Namespace": "AWS/DynamoDB",
+        "MetricName": "ConsumedWriteCapacityUnits",
+        "Statistics.member.1": "Sum",
+        "Unit": "Count",
+        "Dimensions.member.1.Name":"TableName",
+        "Dimensions.member.1.Value":"rad_impressions"
+        },
+        {
+        "Namespace": "AWS/DynamoDB",
+        "MetricName": "ThrottledRequests",
+        "Statistics.member.1": "Sum",
+        "Unit": "Count",
+        "Dimensions.member.1.Name":"TableName",
+        "Dimensions.member.1.Value":"rad_impressions",
+        "Dimensions.member.2.Name":"Operation",
+        "Dimensions.member.2.Value":"UpdateItem"
+        }
+
+    ],
+    "accessKeyId": "REPLACE",
+    "secretAccessKey": "REPLACE",
+    "region": "us-east-1"
+}
