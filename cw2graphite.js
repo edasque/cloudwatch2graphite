@@ -16,7 +16,9 @@ var interval = 11;
 
 var metrics = metrics_config.metrics
 
-for(index in metrics) getOneStat(metrics[index]);
+for(index in metrics) {
+	getOneStat(metrics[index]);
+}
 
 function getOneStat(metric) {
 
@@ -29,7 +31,7 @@ function getOneStat(metric) {
 	var options = {
 		Namespace: metric.Namespace,
 		MetricName: metric.MetricName,
-		Period: '300',
+		Period: '60',
 		StartTime: start_time,
 		EndTime: end_time,
 		"Statistics.member.1": metric["Statistics.member.1"],
@@ -41,7 +43,9 @@ function getOneStat(metric) {
 
 	}
 
-	metric.name = metric.Namespace.replace("/", ".");
+	metric.name = (metrics_config.carbonNameSpacePrefix != undefined) ? metrics_config.carbonNameSpacePrefix + "." : "";
+
+	metric.name += metric.Namespace.replace("/", ".");
 	metric.name += "." + metric["Dimensions.member.1.Value"];
 	metric.name += "." + metric.MetricName;
 	if (metric["Dimensions.member.2.Value"]!==undefined) 
@@ -65,17 +69,18 @@ function getOneStat(metric) {
 			var memberObject = response.GetMetricStatisticsResult.Datapoints.member;
 
 			if(memberObject != undefined) {
+				var memberObj;
+				
 				if(memberObject.length === undefined) {
-					metric.value = memberObject[metric["Statistics.member.1"]]
+					memberObj = memberObject; 
 				} else {
-					metric.value = memberObject[memberObject.length - 1][metric["Statistics.member.1"]]
-
+					memberObj = memberObject[memberObject.length - 1];
 				}
 
-				metric.ts = parseInt(now.getTime() / 1000);
+				metric.value = memberObj[metric["Statistics.member.1"]]
+				metric.ts = parseInt(new Date().getTime(memberObj.TimeStamp) / 1000);
 				
-				metric.prefix = (metrics_config.carbonNameSpacePrefix != undefined) ? metrics_config.carbonNameSpacePrefix + "." : "";
-				console.log("%s %s %s", metric.prefix+metric.name, metric.value, metric.ts);
+				console.log("%s %s %s", metric.name, metric.value, metric.ts);
 
 				if((metric === undefined)||(metric.value === undefined)) {
 					console.dir(response);
