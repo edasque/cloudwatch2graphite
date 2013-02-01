@@ -73,7 +73,9 @@ function getOneStat(metric) {
 				}
 
 				metric.ts = parseInt(now.getTime() / 1000);
-				console.log("%s %s %s", metric.name, metric.value, metric.ts);
+				
+				metric.prefix = (metrics_config.carbonNameSpacePrefix != undefined) ? metrics_config.carbonNameSpacePrefix + "." : "";
+				console.log("%s %s %s", metric.prefix+metric.name, metric.value, metric.ts);
 
 				if((metric === undefined)||(metric.value === undefined)) {
 					console.dir(response);
