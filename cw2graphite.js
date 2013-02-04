@@ -74,6 +74,11 @@ function getOneStat(metric) {
 				if(memberObject.length === undefined) {
 					memberObj = memberObject; 
 				} else {
+					// samples might not be sorted in chronological order
+					memberObject.sort(function(m1,m2){
+						var d1 = new Date(m1.Timestamp), d2 = new Date(m2.Timestamp);
+						return d1 - d2
+					});
 					memberObj = memberObject[memberObject.length - 1];
 				}
 
