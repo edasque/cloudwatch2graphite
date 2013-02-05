@@ -1,5 +1,5 @@
 var dateFormat = require('dateformat');
-require('./date.js');
+require('./lib/date');
 
 var fs = require('fs');
 var metrics_config_JSON = fs.readFileSync('./metrics.json', "ascii");
@@ -61,16 +61,15 @@ function getOneStat(metric) {
 	// console.log(metric);
 	cloudwatch.request('GetMetricStatistics', options, function(error, response) {
 		if(error) {
-			console.error(error);
+			console.error("ERROR ! ",error);
 
 		} else {
 
 
 			var memberObject = response.GetMetricStatisticsResult.Datapoints.member;
+			if (memberObject != undefined) {
 
-			if(memberObject != undefined) {
 				var memberObj;
-				
 				if(memberObject.length === undefined) {
 					memberObj = memberObject; 
 				} else {
@@ -87,7 +86,7 @@ function getOneStat(metric) {
 				
 				console.log("%s %s %s", metric.name, metric.value, metric.ts);
 
-				if((metric === undefined)||(metric.value === undefined)) {
+				if ((metric === undefined)||(metric.value === undefined)) {
 					console.dir(response);
 					console.dir(response.GetMetricStatisticsResult.Datapoints.member);
 					console.log("[1]")
@@ -97,7 +96,7 @@ function getOneStat(metric) {
 					console.log(typeof response.GetMetricStatisticsResult.Datapoints.member);
 
 				}
-			}
+			} //if(memberObject != undefined)
 
 		}
 	});
