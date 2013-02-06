@@ -29,7 +29,9 @@ You'll need to install a few modules, including:
 * aws2js
 * optparse
 
+
 	npm install dateformat aws2js optparse
+
 
 should do it.
 
