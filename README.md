@@ -10,16 +10,17 @@ Usage
 
 typically, to test you'd run:
 
-	node cw2graphite.js 
+	node cw2graphite.js
 
 Pre-requisites
 --------------
 You'll need to install a few modules, including:
 * dateformat
 * aws2js
-	
-	npm install dateformat aws2js
-should do it. 
+* optparse
+
+	npm install dateformat aws2js optparse
+should do it.
 
 Example output
 --------------

@@ -1,20 +1,13 @@
 var dateFormat = require('dateformat');
 require('./lib/date');
+var global_options = require('./lib/options.js').readCmdOptions();
 
-var fs = require('fs');
-var metrics_config_JSON = fs.readFileSync('./metrics.json', "ascii");
+var cloudwatch = require('aws2js').load('cloudwatch', global_options.credentials.accessKeyId, global_options.credentials.secretAccessKey);
 
-var metrics_config = JSON.parse(metrics_config_JSON);
-
-var accessKeyId = metrics_config.accessKeyId
-var secretAccessKey = metrics_config.secretAccessKey
-
-var cloudwatch = require('aws2js').load('cloudwatch', accessKeyId, secretAccessKey);
-
-cloudwatch.setRegion(metrics_config.region);
+cloudwatch.setRegion(global_options.metrics_config.region);
 var interval = 11;
 
-var metrics = metrics_config.metrics
+var metrics = global_options.metrics_config.metrics
 
 for(index in metrics) {
 	getOneStat(metrics[index]);
@@ -43,7 +36,7 @@ function getOneStat(metric) {
 
 	}
 
-	metric.name = (metrics_config.carbonNameSpacePrefix != undefined) ? metrics_config.carbonNameSpacePrefix + "." : "";
+	metric.name = (global_options.metrics_config.carbonNameSpacePrefix != undefined) ? global_options.metrics_config.carbonNameSpacePrefix + "." : "";
 
 	metric.name += metric.Namespace.replace("/", ".");
 	metric.name += "." + metric["Dimensions.member.1.Value"];
