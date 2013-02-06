@@ -18,7 +18,7 @@ Usage
 * to test with all options :
 
 	node cw2graphite.js [--credentials credentials_file] [--metrics metrics_file] | --help
-
+	
 	credentials_file contains the AWS access key & secret key (default : ./conf/credentials.json)
 	metrics_file contains the metrics definition (defaults : ./conf/metrics.json)
 
