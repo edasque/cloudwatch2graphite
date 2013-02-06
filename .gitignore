@@ -62,3 +62,8 @@ Desktop.ini
 
 ## SVN
 .svn/
+
+############
+## security : avoid commiting sensible files
+############
+conf/*.json
