@@ -11,13 +11,14 @@ You'll find here the [reference](http://docs.aws.amazon.com/AmazonCloudWatch/lat
 Usage
 -------------------
 
-* typically, to test you should simply run:
+typically, to test you should simply run:
 
 	node cw2graphite.js
 
-* to test with all options :
+to test with all options:
 
 	node cw2graphite.js [--credentials credentials_file] [--metrics metrics_file] | --help
+	
 	credentials_file contains the AWS access key & secret key (default : ./conf/credentials.json)
 	metrics_file contains the metrics definition (defaults : ./conf/metrics.json)
 
@@ -28,11 +29,9 @@ You'll need to install a few modules, including:
 * aws2js
 * optparse
 
+	simply running this should do the job :
+	> npm install dateformat aws2js optparse
 
-	npm install dateformat aws2js optparse
-
-
-should do it.
 
 Example output
 --------------
