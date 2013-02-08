@@ -28,7 +28,11 @@
         }
 
     ],
+    // AWS settings
     "accessKeyId": "REPLACE",
     "secretAccessKey": "REPLACE",
-    "region": "us-east-1"
+    "region": "us-east-1",
+
+    // Carbon settings : optional prefix for target metric's namespace 
+    "carbonNameSpacePrefix" : "cloudwatch"
 }
