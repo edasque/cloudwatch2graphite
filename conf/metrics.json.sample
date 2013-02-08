@@ -28,11 +28,9 @@
         }
 
     ],
-    // AWS settings
-    "accessKeyId": "REPLACE",
-    "secretAccessKey": "REPLACE",
-    "region": "us-east-1",
 
     // Carbon settings : optional prefix for target metric's namespace 
-    "carbonNameSpacePrefix" : "cloudwatch"
+    "carbonNameSpacePrefix" : "cloudwatch",
+    // optional parameter : the nb of overlaping datapoints to use
+    //"numberOfOverlappingPoints" : 3
 }

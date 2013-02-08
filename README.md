@@ -17,8 +17,9 @@ typically, to test you should simply run:
 
 to test with all options:
 
-	node cw2graphite.js [--credentials credentials_file] [--metrics metrics_file] | --help
-	
+	node cw2graphite.js [--region region_name] [--credentials credentials_file] [--metrics metrics_file] | --help
+
+	region_name is the AWS region, ie. eu-west-1 (default : us-east-1)
 	credentials_file contains the AWS access key & secret key (default : ./conf/credentials.json)
 	metrics_file contains the metrics definition (defaults : ./conf/metrics.json)
 

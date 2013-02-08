@@ -4,16 +4,16 @@ var global_options = require('./lib/options.js').readCmdOptions();
 
 var cloudwatch = require('aws2js').load('cloudwatch', global_options.credentials.accessKeyId, global_options.credentials.secretAccessKey);
 
-cloudwatch.setRegion(global_options.metrics_config.region);
-var interval = 11;
+cloudwatch.setRegion(global_options.region_name);
 
 var metrics = global_options.metrics_config.metrics
 
 for(index in metrics) {
-	getOneStat(metrics[index]);
+	getOneStat(metrics[index],global_options.region_name);
 }
 
-function getOneStat(metric) {
+function getOneStat(metric,regionName) {
+	var interval = 11;
 
 	var now = new Date();
 	var then = (interval).minutes().ago()
@@ -37,7 +37,8 @@ function getOneStat(metric) {
 	}
 
 	metric.name = (global_options.metrics_config.carbonNameSpacePrefix != undefined) ? global_options.metrics_config.carbonNameSpacePrefix + "." : "";
-
+	metric.name = metric.name.replace("{regionName}",regionName);
+	
 	metric.name += metric.Namespace.replace("/", ".");
 	metric.name += "." + metric["Dimensions.member.1.Value"];
 	metric.name += "." + metric.MetricName;
@@ -55,41 +56,29 @@ function getOneStat(metric) {
 	cloudwatch.request('GetMetricStatistics', options, function(error, response) {
 		if(error) {
 			console.error("ERROR ! ",error);
-
 		} else {
-
-
 			var memberObject = response.GetMetricStatisticsResult.Datapoints.member;
 			if (memberObject != undefined) {
 
-				var memberObj;
+				var dataPoints;
 				if(memberObject.length === undefined) {
-					memberObj = memberObject; 
+					dataPoints = [memberObject];
 				} else {
 					// samples might not be sorted in chronological order
-					memberObject.sort(function(m1,m2){
+					dataPoints = memberObject.sort(function(m1,m2){
 						var d1 = new Date(m1.Timestamp), d2 = new Date(m2.Timestamp);
 						return d1 - d2
 					});
-					memberObj = memberObject[memberObject.length - 1];
 				}
-
-				metric.value = memberObj[metric["Statistics.member.1"]]
-				metric.ts = parseInt(new Date().getTime(memberObj.TimeStamp) / 1000);
-				
-				console.log("%s %s %s", metric.name, metric.value, metric.ts);
-
-				if ((metric === undefined)||(metric.value === undefined)) {
-					console.dir(response);
-					console.dir(response.GetMetricStatisticsResult.Datapoints.member);
-					console.log("[1]")
-					console.dir(response.GetMetricStatisticsResult.Datapoints.member[1]);
-					console.log("length=" + response.GetMetricStatisticsResult.Datapoints.member.length);
-
-					console.log(typeof response.GetMetricStatisticsResult.Datapoints.member);
-
+				// Very often in Cloudwtch the last aggregated point is inaccurate and might be updated 1 or 2 minutes later
+				// this is not a problem if we choose to overwrite it into graphite, so we read the 3 last points.
+				if (dataPoints.length > global_options.metrics_config.numberOfOverlappingPoints) {
+					dataPoints = dataPoints.slice(dataPoints.length-global_options.metrics_config.numberOfOverlappingPoints, dataPoints.length);
 				}
-			} //if(memberObject != undefined)
+				for (var point in dataPoints) {
+					console.log("%s %s %s", metric.name, dataPoints[point][metric["Statistics.member.1"]], parseInt(new Date(dataPoints[point].Timestamp).getTime() / 1000.0));
+				}
+			} // if (memberObject != undefined)
 
 		}
 	});
