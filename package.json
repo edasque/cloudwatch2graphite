@@ -1,0 +1,32 @@
+{
+  "name": "cloudwatch2graphite",
+  "description": "Bring Amazon AWS Cloudwatch metrics into Graphite",
+  "homepage": "https://github.com/edasque/cloudwatch2graphite",
+  "version": "0.0.1",
+  "dependencies": {
+    "aws2js": "0.8.3",
+    "dateformat": "1.0.6-1.2.3",
+    "optparse": "1.0.4"
+  },
+  "maintainers": [
+    {
+      "name": "Erik Dasque",
+      "email": "ca_github@frenchguys.com"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/edasque/cloudwatch2graphite/issues"
+  },
+  "repositories": [
+    {
+      "type": "git",
+      "url": "git://github.com/edasque/cloudwatch2graphite.git"
+    }
+  ],
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "scripts": {
+    "start": "node cw2graphite.js"
+  }
+}

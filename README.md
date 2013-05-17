@@ -31,7 +31,7 @@ You'll need to install a few modules, including:
 * optparse
 
 	simply running this should do the job :
-	> npm install dateformat aws2js optparse
+	> npm install
 
 
 Example output
