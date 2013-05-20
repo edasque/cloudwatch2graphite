@@ -14,6 +14,29 @@
       "email": "ca_github@frenchguys.com"
     }
   ],
+    "contributors": [
+    {
+      "name": "Erik Dasque",
+      "email": "ca_github@frenchguys.com"
+    },
+    {
+      "name": "Samuel Linclau",
+      "email": "samuel.linclau@alenty.com"
+    },
+    {
+      "name": "Jared Hirsch",
+      "email": "ohai@6a68.net"
+    }
+  ],
+  "keywords": [
+    "cloudwatch",
+    "aws",
+    "metrics",
+    "graphite",
+    "app",
+    "api"
+  ],
+
   "bugs": {
     "url": "https://github.com/edasque/cloudwatch2graphite/issues"
   },
@@ -28,5 +51,11 @@
   },
   "scripts": {
     "start": "node cw2graphite.js"
-  }
+  },
+    "licenses": [
+        {
+            "type": "MIT",
+        }
+    ]
+
 }
