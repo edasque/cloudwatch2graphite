@@ -28,7 +28,6 @@
       "email": "ohai@6a68.net"
     }
   ],
-<<<<<<< HEAD
   "keywords": [
     "cloudwatch",
     "aws",
@@ -37,8 +36,6 @@
     "app",
     "api"
   ],
-=======
->>>>>>> 88a94a8f97ce000bc78ce28a8aedce980cdd180e
 
   "bugs": {
     "url": "https://github.com/edasque/cloudwatch2graphite/issues"
