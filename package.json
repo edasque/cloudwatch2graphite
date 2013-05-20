@@ -36,7 +36,6 @@
     "app",
     "api"
   ],
-
   "bugs": {
     "url": "https://github.com/edasque/cloudwatch2graphite/issues"
   },
@@ -54,7 +53,7 @@
   },
     "licenses": [
         {
-            "type": "MIT",
+            "type": "MIT"
         }
     ]
 
