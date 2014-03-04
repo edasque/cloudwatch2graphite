@@ -29,24 +29,23 @@ function getOneStat(metric,regionName) {
 		EndTime: end_time,
 		"Statistics.member.1": metric["Statistics.member.1"],
 		Unit: metric.Unit,
-		"Dimensions.member.1.Name": metric["Dimensions.member.1.Name"],
-		"Dimensions.member.1.Value": metric["Dimensions.member.1.Value"],
-		"Dimensions.member.2.Name": metric["Dimensions.member.2.Name"],
-		"Dimensions.member.2.Value": metric["Dimensions.member.2.Value"],
-
 	}
 
 	metric.name = (global_options.metrics_config.carbonNameSpacePrefix != undefined) ? global_options.metrics_config.carbonNameSpacePrefix + "." : "";
 	metric.name = metric.name.replace("{regionName}",regionName);
 	
 	metric.name += metric.Namespace.replace("/", ".");
-	metric.name += "." + metric["Dimensions.member.1.Value"];
-	metric.name += "." + metric.MetricName;
-	if (metric["Dimensions.member.2.Value"]!==undefined) 
-		metric.name += "." + metric["Dimensions.member.2.Value"];
 
+	for (var i=1;i<=10;i++) {
+		if (metric["Dimensions.member."+i+".Name"]!==undefined && metric["Dimensions.member."+i+".Value"]!==undefined) {
+			options["Dimensions.member."+i+".Name"] = metric["Dimensions.member."+i+".Name"]
+			options["Dimensions.member."+i+".Value"] = metric["Dimensions.member."+i+".Value"]
 
+			metric.name += "." + metric["Dimensions.member."+i+".Value"];
+		}
+	}
 	
+	metric.name += "." + metric.MetricName;
 	metric.name += "." + metric["Statistics.member.1"];
 	metric.name += "." + metric.Unit;
 
