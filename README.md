@@ -8,6 +8,8 @@ This application will output graphite counters for a list of AWS CloudWatch metr
 
 You'll find here the [reference](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html "Amazon AWS Cloudwatch reference to NameSpaces, metrics, units and dimensions") to NameSpaces, metrics, units and dimensions you'll want to refer to to set up your `metrics.json` (`metrics.json.sample` is a good starting point). Thus far this has been tested with EC2, ELB & DynamoDB.
 
+This software is governed by the Apache 2.0 license.
+
 Usage
 -------------------
 
