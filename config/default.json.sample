@@ -1,0 +1,48 @@
+{
+  "awsCredentials": {
+    "accessKeyId": "REPLACE",
+    "secretAccessKey": "REPLACE",
+    "region": "us-east-1"
+  },
+  "metricsConfig": {
+    "metrics": [
+      {
+        "Namespace": "AWS/CloudFront",
+        "MetricName": "Requests",
+        "Period": 600,
+        "Statistics": [
+          "Sum"
+        ],
+        "Dimensions": [
+          {
+            "Name": "Region",
+            "Value": "Global"
+          },
+          {
+            "Name": "DistributionId",
+            "Value": "REPLACE"
+          }
+        ]
+      },
+      {
+        "MetricName": "TotalErrorRate",
+        "Namespace": "AWS/CloudFront",
+        "Period": 600,
+        "Statistics": [
+          "Sum"
+        ],
+        "Dimensions": [
+          {
+            "Name": "Region",
+            "Value": "Global"
+          },
+          {
+            "Name": "DistributionId",
+            "Value": "REPLACE"
+          }
+        ]
+      }
+    ],
+    "carbonNameSpacePrefix": "cloudwatch"
+  }
+}

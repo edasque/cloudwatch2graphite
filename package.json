@@ -1,13 +1,20 @@
 {
   "name": "cloudwatch2graphite",
   "description": "Bring Amazon AWS Cloudwatch metrics into Graphite",
-  "homepage": "https://github.com/edasque/cloudwatch2graphite",
   "version": "0.0.1",
+  "main": "list_cw_metrics.js",
   "dependencies": {
-    "aws2js": "0.8.3",
-    "dateformat": "1.0.6-1.2.3",
-    "optparse": "1.0.4"
+    "aws-sdk": "^2.1.10",
+    "dateformat": "^1.0.11",
+    "lodash": "^3.2.0",
+    "config": "^1.12.0",
+    "minimist": "^1.1.1"
   },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license":"Apache-2.0",
   "maintainers": [
     {
       "name": "Erik Dasque",
@@ -26,6 +33,10 @@
     {
       "name": "Jared Hirsch",
       "email": "ohai@6a68.net"
+    },
+    {
+      "name":"Secking Tozlu",
+      "email":"tozluseckin@gmail.com"
     }
   ],
   "keywords": [
@@ -36,25 +47,12 @@
     "app",
     "api"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/edasque/cloudwatch2graphite"
+  },
   "bugs": {
     "url": "https://github.com/edasque/cloudwatch2graphite/issues"
   },
-  "repositories": [
-    {
-      "type": "git",
-      "url": "git://github.com/edasque/cloudwatch2graphite.git"
-    }
-  ],
-  "engines": {
-    "node": ">=0.8.0"
-  },
-  "scripts": {
-    "start": "node cw2graphite.js"
-  },
-    "licenses": [
-        {
-            "type": "MIT"
-        }
-    ]
-
+  "homepage": "https://github.com/edasque/cloudwatch2graphite"
 }
