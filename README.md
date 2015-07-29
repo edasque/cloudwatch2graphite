@@ -1,6 +1,8 @@
 AWS Cloudwatch2Graphite
 ==================
 
+[![Join the chat at https://gitter.im/edasque/cloudwatch2graphite](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/edasque/cloudwatch2graphite?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 TODO
 ------------------
 1. ~~https://github.com/edasque/cloudwatch2graphite was written as a generic utility. When I recently moved it to using 'aws-sdk' instead of the unofficial 'aws2js', I hacked the genericity/configurability out. cw2graphite should again be configurable for multiple metrics~~
