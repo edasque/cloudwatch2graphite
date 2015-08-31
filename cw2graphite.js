@@ -60,8 +60,9 @@ function printMetric(metric, get_start_time, get_end_time) {
                 return n.Timestamp.getTime();
             });
             for (var point in sorted_data) {
-                for (var statistic in getMetricStatistics_param.Statistics) {
-                    console.log("%s %s %s", getMetricStatistics_param.Namespace.replace("/", ".") + dimension_prefix + "." + getMetricStatistics_param.MetricName, statistic, parseInt(new Date(sorted_data[point].Timestamp).getTime() / 1000.0));
+                for (var stat_index in getMetricStatistics_param.Statistics) {
+                    var statistic = getMetricStatistics_param.Statistics[stat_index];
+                    console.log("%s %s %s", getMetricStatistics_param.Namespace.replace("/", ".") + dimension_prefix + "." + getMetricStatistics_param.MetricName, sorted_data[point][statistic], parseInt(new Date(sorted_data[point].Timestamp).getTime() / 1000.0));
                 }
             }
         }
