@@ -1,9 +1,7 @@
 AWS Cloudwatch2Graphite
 ==================
 
-[![Join the chat at https://gitter.im/edasque/cloudwatch2graphite](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/edasque/cloudwatch2graphite?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-[![npm](https://img.shields.io/npm/dm/cloudwatch2graphite.svg)]() [![npm](https://img.shields.io/npm/dt/cloudwatch2graphite.svg)]()
+[![Join the chat at https://gitter.im/edasque/cloudwatch2graphite](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/edasque/cloudwatch2graphite?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![npm](https://img.shields.io/npm/dm/cloudwatch2graphite.svg)]() [![npm](https://img.shields.io/npm/dt/cloudwatch2graphite.svg)]()
 
 
 TODO
