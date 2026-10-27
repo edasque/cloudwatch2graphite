@@ -30,9 +30,8 @@ typically, to test you should simply run:
 
 Pre-requisites
 --------------
-You'll need to install a few modules, including:
-* dateformat
-* aws-sdk
+You'll need Node.js 20 or later and to install a few modules, including:
+* @aws-sdk/client-cloudwatch (AWS SDK for JavaScript v3)
 * minimist & config
 
 	simply running this should do the job :
